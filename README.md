@@ -18,7 +18,7 @@ Varaosat koskevat erilaisia puhelinmalleja- ja merkkejä. Varaosalla on varaosak
 - varaosakoodi
 - varaosan tyyppi
 
-Lista loppuu.
+Seuraavaksi käydään käsitteet tarkemmin läpi ja mietitään niiden toimintaa tietokannassa.
 
 	3. Käsitteiden avaaminen
 Myymälä. Myymälöitä voi olla useampi, ja myymälän tulee toimia sisäänkirjautumistunnuksena, jolla tunnistetaan että mitä myymälää tarkastellaan. Myymälällä tulee olla ID, nimi, kirjautumistunnus ja salasana.
