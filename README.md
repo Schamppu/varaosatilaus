@@ -1,5 +1,6 @@
 # varaosatilaus
 Varaosatilausjärjestelmä
+	
 	1. Asiakkaan kuvaus halutusta järjestelmästä
 Sovellus tulee seuraavaan käyttötarkoituskuvaukseen, joka on saatu “asiakkaalta”:
 
@@ -16,6 +17,8 @@ Varaosat koskevat erilaisia puhelinmalleja- ja merkkejä. Varaosalla on varaosak
 - puhelinmerkki
 - varaosakoodi
 - varaosan tyyppi
+
+Lista loppuu.
 
 	3. Käsitteiden avaaminen
 Myymälä. Myymälöitä voi olla useampi, ja myymälän tulee toimia sisäänkirjautumistunnuksena, jolla tunnistetaan että mitä myymälää tarkastellaan. Myymälällä tulee olla ID, nimi, kirjautumistunnus ja salasana.
