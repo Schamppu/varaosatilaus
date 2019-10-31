@@ -30,3 +30,7 @@ Varaosa. Järjestelmän kautta tilataan varaosia, ja niille oli määritelty kä
 Tilaus. Tilaus sisältää varaosan, tai useampia varaosia. Tilaus voi olla eri tilassa: se voi olla käsittelemätön, käsitelty tai odottamassa varaosien saapumista (keskusvarasto on joutunut tilaamaan täydennyksiä). Tilauksella tulee siis olla liitostaulu varaosiin mitä se sisältää, sekä ID ja sen tila. Tämän lisäksi tilauksella tulee olla sen luonti-, käsittely-, sekä valmistumispäivämäärä. Luontipäivämäärä sisältää milloin tilaus on luotu, käsittelypäivämäärä milloin sitä on viimeksi käsitelty ja valmistumispäivämäärä milloin tilaus on valmis ja lähetetty myymälään.
 
 Edellämainituista meillä syntyy kolme tietokantataulua (tunnus, varaosa, tilaus) sekä yksi liitostaulu (Tilaus-Varaosa). Avataan seuraavaksi tietokantataulut seuraavan linkin takaata löytyvästä tietokantakaaviosta:
+
+https://drive.google.com/open?id=1Hph24yNAFZDf-kRXJ_KAXpfagFzMfLvC
+
+
