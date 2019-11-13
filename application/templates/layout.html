@@ -2,13 +2,22 @@
   <html>
     <head>
       <meta charset="utf-8">
-      <title>TodoApplication</title>
+      <title>Varastotilaus</title>
     </head>
     
     <body>
+
+        {% if current_user.is_authenticated %}
+        <p>
+            Kirjauduttu tunnuksella {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+        </p>
+        {% else %}
+        <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>
+        {% endif %}
+
       <ul>
-	<li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
-	<li><a href="{{ url_for('tasks_form') }}">Add a task</a></li>
+	<li><a href="{{ url_for('tasks_index') }}">Listaa varaosatilaukset</a></li>
+	<li><a href="{{ url_for('tasks_form') }}">Lisää uusi varaosatilaus</a></li>
       </ul>
       
       {% block body %}
