@@ -34,4 +34,5 @@ Edellämainituista meillä syntyy kolme tietokantataulua (tunnus, varaosa, tilau
 https://drive.google.com/open?id=1Hph24yNAFZDf-kRXJ_KAXpfagFzMfLvC
 Heroku: https://tsoha-varaosa.herokuapp.com/
 
+Heroku: https://tsoha-varaosa.herokuapp.com/
 
