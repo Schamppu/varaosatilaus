@@ -35,4 +35,9 @@ https://drive.google.com/open?id=1Hph24yNAFZDf-kRXJ_KAXpfagFzMfLvC
 Heroku: https://tsoha-varaosa.herokuapp.com/
 
 Heroku: https://tsoha-varaosa.herokuapp.com/
+Testitunnuksia: (tunnus, salasana)
+admin, admin
+user, user
+
+Lisätty sisäänkirjautuminen, muokattu ohjelman toimintaa enemmän suunnitelman mukaiseksi kauemmaksi esimerkkimateriaalista.
 
