@@ -1,0 +1,11 @@
+21.11.2019 | v.0.1
+-----
+Pahoittelut kun aiemmin en ole pitänyt näitä käyttäjätarinoita, tämä on siis nyt ensimmäinen merkintä.
+
+Tänään toteutettu ulkoasu, CRUDi toimii (muokkaus, poisto). Ominaisuudet edenneet hyvin ja järjestelmä toimii nyt varsin järkevästi.
+
+Tavoitteena seuraavaksi lisätä loputkin suunnitelluista tietokantatauluista ja muokata monimutkaisempaa tietokantahakua pois esimerkistä johonkin järkevämpään kunhan keksin jotain järkevää statistiikkaa mitä esittää etusivulla.
+
+Aika ei ole vielä riittänyt siihen, että muokkaisin koodista kaikki "tasks"-viitteet pois kun en nähnyt sitä vielä ajankohtaisena tai tärkeänä prioriteettina, mutta tulen piakkoin muokkaamaan kaikki tasks-jutut varaosa-nimisiksi. 
+
+Itseäni viihdyttääkseni olen toistaiseksi luonut ulkoasun jne. hieman huumorimielisiksi, näitä tullaan myöhemmin muuttamaan paremmiksi kunhan aikaa löytyy siihen. Myös tilaus toimitettu-nappulaan tulisi tehdä niin, että nappula katoaa kun sen tila on jo toimitettu.

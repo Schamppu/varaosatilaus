@@ -3,28 +3,59 @@
     <head>
       <meta charset="utf-8">
       <title>Varastotilaus</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     
     <body>
 
-        {% if current_user.is_authenticated %}
-        <p>
-            Kirjauduttu tunnuksella {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-        </p>
-        {% else %}
-        <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>
-        {% endif %}
+      <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color: #362d4d;">
+        <a class="navbar-brand" href="/">
+          <img src="http://cliparts.co/cliparts/rcn/rey/rcnreyoXi.svg" width="30" height="40" class="d-inline-block align-top" alt="">
+          <div class="navbar-brand" style="padding-top:4px;">
+          Kristillinen varaosatilausjärjestelmä
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('tasks_index') }} ">Näytä tilaukset</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('tasks_form') }} ">Luo uusi tilaus</a>
+            </li>
+          </ul>
 
-      <ul>
-	<li><a href="{{ url_for('tasks_index') }}">Listaa varaosatilaukset</a></li>
-	<li><a href="{{ url_for('tasks_form') }}">Lisää uusi varaosatilaus</a></li>
-      </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+          <div class="navbar-text">
+            Olet sisäänkirjautunut tunnuksella: {{ current_user.name }}
+          </div>
+
+        <div class="navbar-text" style="padding-left:16px;">
+          <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+          {% else %}
+
+        <div class="navbar-text">
+          <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>
+          {% endif %}
+        </div>
+      </nav>
       
+      <main role="main" class="container">
       {% block body %}
       <p>
-	Content.
+	      Content.
       </p>
       {% endblock %}
+      </main>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     </body>
   </html>
 
