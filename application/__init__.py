@@ -8,7 +8,7 @@ import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"    
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///varaosa.db"    
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
@@ -16,8 +16,8 @@ db = SQLAlchemy(app)
 # oman sovelluksen toiminnallisuudet
 from application import views
 
-from application.tasks import models
-from application.tasks import views
+from application.varaosat import models
+from application.varaosat import views
 
 from application.auth import models
 from application.auth import views

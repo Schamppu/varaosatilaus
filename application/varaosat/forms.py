@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, StringField, validators
 
-class TaskForm(FlaskForm):
+class VaraosaForm(FlaskForm):
     name = StringField("Varaosa", [validators.Length(min=2)])
     done = BooleanField("Toimitettu?")
   
@@ -9,7 +9,7 @@ class TaskForm(FlaskForm):
         csrf = False
 
 
-class EditForm(FlaskForm):
+class VaraosaEditForm(FlaskForm):
     name = StringField("Varaosa", [validators.Length(min=2)])
     done = BooleanField("Toimitettu?")
   

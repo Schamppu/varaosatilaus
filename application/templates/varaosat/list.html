@@ -7,30 +7,30 @@
       <th>Tila</th>
       <th></th>
     </tr>
-    {% for task in tasks %}
+    {% for varaosa in varaosat %}
     <tr>
-      <td>{{ task.name }}</td>
-      <td>{{ task.done }}</td>
+      <td>{{ varaosa.name }}</td>
+      <td>{{ varaosa.done }}</td>
       <td>
 
 
   <div style="width:800px;">
 
     <div style="float: left; width: 180px; padding-left:16px;"> 
-      <form method="POST" action="{{ url_for('tasks_set_done', task_id=task.id) }}">
+      <form method="POST" action="{{ url_for('varaosa_set_done', varaosa_id=varaosa.id) }}">
         <input type="submit" value="Tilaus toimitettu"/>
       </form>
   </div>
 
     <div style="float: left; width: 130px; padding-left:16px;"> 
-      <form method="POST" action="{{ url_for('tasks_edit', task_id=task.id) }}">
+      <form method="POST" action="{{ url_for('varaosa_edit', varaosa_id=varaosa.id) }}">
         <input type="submit" value="Muokkaa"/>
       </form>
     </div>
 
 
     <div style="float: left; width: 130px; padding-left:16px;"> 
-        <form method="POST" action="{{ url_for('tasks_delete', task_id=task.id) }}">
+        <form method="POST" action="{{ url_for('varaosa_delete', varaosa_id=varaosa.id) }}">
           <input type="submit" value="Poista"/>
         </form>
       </div>

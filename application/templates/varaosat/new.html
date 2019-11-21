@@ -3,7 +3,7 @@
   {% extends "layout.html" %}
 
   {% block body %}
-  <form method="POST" action="{{ url_for('tasks_edit', task_id=task.id) }}">
+  <form method="POST" action="{{ url_for('varaosa_create') }}">
     <table>
       <tr>
 	<td>
@@ -32,8 +32,9 @@
       </tr>
       <tr>
 	<td colspan="3">
-	  <input type="submit" value="Muokkaa tilausta"/>
+	  <input type="submit" value="Lisää uusi tilaus"/>
 	</td>
       </tr>
   </form>
   {% endblock %}
+
