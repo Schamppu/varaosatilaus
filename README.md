@@ -44,6 +44,7 @@ user, user
 ## CHANGELOG:
 - v.0.05 (14.11.2019): Lisätty sisäänkirjautuminen, muokattu ohjelman toimintaa enemmän suunnitelman mukaiseksi kauemmaksi esimerkkimateriaalista.
 - v.0.1 (21.11.2019): Lisätty ulkoasu sekä mahdollisuus muokata ja poistaa aikaisempia merkintöjä eli CRUD. Koodia myös paranneltu ja hieman kommentoitu.
+- v.0.11 HOTFIX (21.11.2019): Laajempi tietokantahaku aiheutti Herokun kanssa ongelmia vaikka toimikin paikallisesti. Otettu pois käytöstä toistaiseksi.
 
 ## TODO:
 - Tilanmuutosnappi katoaa kun tila on valmis
