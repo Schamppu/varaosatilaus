@@ -31,7 +31,7 @@ Tilaus. Tilaus sisältää varaosan, tai useampia varaosia. Tilaus voi olla eri 
 
 Edellämainituista meillä syntyy kolme tietokantataulua (tunnus, varaosa, tilaus) sekä yksi liitostaulu (Tilaus-Varaosa). Avataan seuraavaksi tietokantataulut seuraavan linkin takaata löytyvästä tietokantakaaviosta:
 
-![alt text]( "Tietokantakaavio")
+![alt text](https://github.com/Schamppu/varaosatilaus/blob/master/documentation/tsohakaavio.png "Tietokantakaavio")
 
 Heroku: https://tsoha-varaosa.herokuapp.com/
 
