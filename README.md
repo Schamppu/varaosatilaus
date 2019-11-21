@@ -31,7 +31,8 @@ Tilaus. Tilaus sisältää varaosan, tai useampia varaosia. Tilaus voi olla eri 
 
 Edellämainituista meillä syntyy kolme tietokantataulua (tunnus, varaosa, tilaus) sekä yksi liitostaulu (Tilaus-Varaosa). Avataan seuraavaksi tietokantataulut seuraavan linkin takaata löytyvästä tietokantakaaviosta:
 
-https://drive.google.com/open?id=1Hph24yNAFZDf-kRXJ_KAXpfagFzMfLvC
+![alt text]( "Tietokantakaavio")
+
 Heroku: https://tsoha-varaosa.herokuapp.com/
 
 Heroku: https://tsoha-varaosa.herokuapp.com/
@@ -39,5 +40,13 @@ Testitunnuksia: (tunnus, salasana)
 admin, admin
 user, user
 
-Lisätty sisäänkirjautuminen, muokattu ohjelman toimintaa enemmän suunnitelman mukaiseksi kauemmaksi esimerkkimateriaalista.
 
+CHANGELOG:
+v.0.05 (14.11.2019): Lisätty sisäänkirjautuminen, muokattu ohjelman toimintaa enemmän suunnitelman mukaiseksi kauemmaksi esimerkkimateriaalista.
+v.0.1 (21.11.2019): Lisätty ulkoasu sekä mahdollisuus muokata ja poistaa aikaisempia merkintöjä eli CRUD. Koodia myös paranneltu ja hieman kommentoitu.
+
+TODO:
+- Tilanmuutosnappi katoaa kun tila on valmis
+- Lisää tietokantatauluja suunnitelmasta
+- Ulkoasun parantelua
+- Enemmän tietoja per varaosa
