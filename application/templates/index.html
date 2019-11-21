@@ -5,18 +5,4 @@
     Tervetuloa Samin varaosatilausjärjestelmään! Tämä on kristillinen varaosatilausjärjestelmä.
   </p>
 
-  {% if needs_tasks is defined %}
-<p>
-  Seuraavien käyttäjien tulee käydä ripillä:
-</p>
-
-<ul>
-  {% for user in needs_tasks %}
-  <li>
-    {{user.id}} {{user.name}}
-  </li>
-  {% endfor %}
-</ul>
-
-{% endif %}
 {% endblock %}
