@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('tilaus_edit', tilaus_id=tilaus.id) }}">
+<table>
+	<div class="form-group">
+		{{ form.orderPlace.label }}
+		{{ form.orderPlace(class="form-control") }}
+			{% for error in form.orderPlace.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.orderStatus.label }}
+		{{ form.orderStatus(class="form-control") }}
+			{% for error in form.orderStatus.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<input class="btn btn-primary" type="submit" value="Tallenna tilaus"/>
+</form>
+
+
+<br>
+<br>
+
+<table class="table table-striped">
+	<thead class=thead-dark style="background-color: #362d4d;">
+		<tr>
+		<th>Osakoodi</th>
+		<th>Tyyppi</th>
+		<th>Merkki</th>
+		<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+	{% for varaosa in varaosat %}
+	<tr>
+		<td>{{ varaosa.partCode }}</td>
+		<td>{{ varaosa.partTypeNames[varaosa.partType] }}</td>
+		<td>{{ varaosa.partBrandNames[varaosa.partBrand] }}</td>
+		<td>
+
+		<form method="POST" action="{{ url_for('tilaus_varaosa_delete', tilaus_id=tilaus.id, varaosa_id=varaosa.id) }}">
+			<input class="btn btn-primary" type="submit" value="Poista"/>
+		</form>
+
+		</td>
+	</tr>
+	</tbody>
+{% endfor %}
+</table>
+
+
+<div class="d-flex flex-row justify-content-around">
+	<form method="GET" action="{{ url_for('show_add', tilaus_id=tilaus.id) }}">
+		<input class="btn btn-primary" type="submit" value="Lisää varaosa"/>
+	</form>
+</div>
+
+{% endblock %}

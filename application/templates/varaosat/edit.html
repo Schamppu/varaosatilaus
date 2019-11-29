@@ -1,39 +1,36 @@
 
 
-  {% extends "layout.html" %}
+{% extends "layout.html" %}
 
-  {% block body %}
-  <form method="POST" action="{{ url_for('varaosa_edit', varaosa_id=varaosa.id) }}">
-    <table>
-      <tr>
-	<td>
-	  {{ form.name.label }}
-	</td>
-	<td>
-	  {{ form.name }}
-	</td>
-	<td>
-	  <ul>
-	    {% for error in form.name.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-	<td>
-	  {{ form.done.label }}
-	</td>
-	<td>
-	  {{ form.done }}
-	</td>
-	<td>
-	</td>
-      </tr>
-      <tr>
-	<td colspan="3">
-	  <input type="submit" value="Muokkaa tilausta"/>
-	</td>
-      </tr>
-  </form>
-  {% endblock %}
+{% block body %}
+<form method="POST" action="{{ url_for('varaosa_edit', varaosa_id=varaosa.id) }}">
+<table>
+	<div class="form-group">
+		{{ form.partCode.label }}
+		{{ form.partCode(class="form-control") }}
+			{% for error in form.partCode.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.partType.label }}
+		{{ form.partType(class="form-control") }}
+			{% for error in form.partType.errors %}
+				{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.partBrand.label }}
+		{{ form.partBrand(class="form-control") }}
+
+			{% for error in form.partBrand.errors %}
+				{{ error }}
+			{% endfor %}
+	</div> 
+
+	<button type="submit" class="btn btn-primary">Muokkaa varaosaa</button>
+</form>
+
+{% endblock %}

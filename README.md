@@ -46,9 +46,13 @@ user, user
 - v.0.1 (21.11.2019): Lisätty ulkoasu sekä mahdollisuus muokata ja poistaa aikaisempia merkintöjä eli CRUD. Koodia myös paranneltu ja hieman kommentoitu.
 - v.0.11 HOTFIX (21.11.2019): Laajempi tietokantahaku aiheutti Herokun kanssa ongelmia vaikka toimikin paikallisesti. Otettu pois käytöstä toistaiseksi.
 - v.0.12 Pikkufix (21.11.2019): Kaikki tasks-nimiset asiat ohjelmassa muokattu varaosa-nimisiksi.
+- v.0.2 (28.11.2019): Lisätty valtavasti uusia toiminnallisuuksia. Lisätty mahdollisuus lisätä uusia tilauksia, varaosat lisätään erilliseen tauluun, liitostaulu yhdistämässä näitä kahta tietokantataulua ja mahdollisuus vaihtaa tilauksien tilaa. Myös näkymät lisätty näille. Sovellus alkaa toiminnallisuuksiltaan olla pian valmis minkä jälkeen siirryn käytettävyyden parantamiseen ja lisäämään esim. käyttäjienlisäystoiminnallisuutta.
 
 ## TODO:
-- Tilanmuutosnappi katoaa kun tila on valmis
-- Lisää tietokantatauluja suunnitelmasta
 - Ulkoasun parantelua
+- Eniten tilatut varaosat näkyvät tilauksessa listana (esim. top 10) ja suoraan sellaista klikkaamalla on mahdollista tilata kyseinen varaosa
+- Mahdollisuus lisätä uusia käyttäjiä admin-tunnareilla
+
+## DONE:
+- Lisää tietokantatauluja suunnitelmasta
 - Enemmän tietoja per varaosa

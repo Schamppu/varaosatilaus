@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+{# Import JQuery #}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	/**
+	 * Adjust the indices of form fields when removing items.
+	 */
+	function adjustIndices(removedIndex) {
+		var $forms = $('.subform');
+
+		$forms.each(function(i) {
+			var $form = $(this);
+			var index = parseInt($form.data('index'));
+			var newIndex = index - 1;
+
+			if (index < removedIndex) {
+				// Skip
+				return true;
+			}
+
+			// Change ID in form itself
+			$form.attr('id', $form.attr('id').replace(index, newIndex));
+			$form.data('index', newIndex);
+
+			// Change IDs in form inputs
+			$form.find('input').each(function(j) {
+				var $item = $(this);
+				$item.attr('id', $item.attr('id').replace(index, newIndex));
+				$item.attr('name', $item.attr('name').replace(index, newIndex));
+			});
+		});
+	}
+
+	/**
+	 * Remove a form.
+	 */
+	function removeForm() {
+		var $removedForm = $(this).closest('.subform');
+		var removedIndex = parseInt($removedForm.data('index'));
+
+		$removedForm.remove();
+
+		// Update indices
+		adjustIndices(removedIndex);
+	}
+
+	/**
+	 * Add a new form.
+	 */
+	function addForm() {
+		var $templateForm = $('#lap-_-form');
+
+		if (!$templateForm) {
+			console.log('[ERROR] Cannot find template');
+			return;
+		}
+
+		// Get Last index
+		var $lastForm = $('.subform').last();
+
+		var newIndex = 0;
+
+		if ($lastForm.length > 0) {
+			newIndex = parseInt($lastForm.data('index')) + 1;
+		}
+
+		// Maximum of 20 subforms
+		if (newIndex > 20) {
+			console.log('[WARNING] Reached maximum number of elements');
+			return;
+		}
+
+		// Add elements
+		var $newForm = $templateForm.clone();
+
+		$newForm.attr('id', $newForm.attr('id').replace('_', newIndex));
+		$newForm.data('index', newIndex);
+
+		$newForm.find('input').each(function(idx) {
+			var $item = $(this);
+
+			$item.attr('id', $item.attr('id').replace('_', newIndex));
+			$item.attr('name', $item.attr('name').replace('_', newIndex));
+		});
+
+		// Append
+		$('#subforms-container').append($newForm);
+		$newForm.addClass('subform');
+		$newForm.removeClass('is-hidden');
+
+		$newForm.find('.remove').click(removeForm);
+	}
+
+
+	$(document).ready(function() {
+		$('#add').click(addForm);
+		$('.remove').click(removeForm);
+	});
+</script>
+
+
+<a id="add" href="#">Lisää varaosa</a>
+
+<form id="lap-form" action="{{ url_for('tilaus_create') }}" method="POST" role="form">
+	<table>
+
+	{# Show all subforms #}
+	
+		{{ form.hidden_tag() }}
+
+		<div id="subforms-container">
+			{% for subform in form.laps %}
+				<div id="lap-{{ loop.index0 }}-form" class="subform" data-index="{{ loop.index0 }}">
+					{{ subform.orderCode.label }}
+					{{ subform.orderCode }}
+
+					<a class="remove" href="#">Poista</a>
+				</div>
+			{% endfor %}
+		</div>
+</form>
+	{# Form template #}
+	<div id="lap-_-form" class="is-hidden" data-index="_">
+		<label for="laps-_-runner_name">Osakoodi</label>
+		<input id="laps-_-runner_name" name="laps-_-runner_name" type="text" value="">
+
+		<a class="remove" href="#">Poista</a>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Tee tilaus</button>
+
+
+{% endblock %}

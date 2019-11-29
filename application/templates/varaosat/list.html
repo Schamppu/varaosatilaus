@@ -1,42 +1,200 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+<style>
+* {
+    box-sizing: border-box;
+  }
+  
+  #myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+
+  button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+
+
+</style>
+   
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Hae varaosaa osakoodilla...">
+  
+
+<table id="myTable" class="table table-striped">
+  <thead class=thead-dark style="background-color: #362d4d;">
     <tr>
-      <th>Varaosa</th>
-      <th>Tila</th>
+      <th><button onclick="sortTableName()">Osakoodi</button></th>
+      <th><button onclick="sortTableType()">Tyyppi</button></th>
+      <th><button onclick="sortTableBrand()">Merkki</button></th>
       <th></th>
     </tr>
-    {% for varaosa in varaosat %}
-    <tr>
-      <td>{{ varaosa.name }}</td>
-      <td>{{ varaosa.done }}</td>
-      <td>
+  </thead>
 
+  <tbody>
+  {% for varaosa in varaosat %}
+  <tr>
+    <td>{{ varaosa.partCode }}</td>
+		<td>{{ varaosa.partTypeNames[varaosa.partType] }}</td>
+		<td>{{ varaosa.partBrandNames[varaosa.partBrand] }}</td>
+    <td>
 
-  <div style="width:800px;">
-
-    <div style="float: left; width: 180px; padding-left:16px;"> 
-      <form method="POST" action="{{ url_for('varaosa_set_done', varaosa_id=varaosa.id) }}">
-        <input type="submit" value="Tilaus toimitettu"/>
+    <div class="d-flex flex-row justify-content-around">
+      <form method="GET" action="{{ url_for('show_varaosa', varaosa_id=varaosa.id) }}">
+        <input class="btn btn-primary" type="submit" value="Muokkaa"/>
       </form>
-  </div>
 
-    <div style="float: left; width: 130px; padding-left:16px;"> 
-      <form method="POST" action="{{ url_for('varaosa_edit', varaosa_id=varaosa.id) }}">
-        <input type="submit" value="Muokkaa"/>
+      <form method="POST" action="{{ url_for('varaosa_delete', varaosa_id=varaosa.id) }}">
+        <input class="btn btn-primary" type="submit" value="Poista"/>
       </form>
-    </div>
+
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 
-    <div style="float: left; width: 130px; padding-left:16px;"> 
-        <form method="POST" action="{{ url_for('varaosa_delete', varaosa_id=varaosa.id) }}">
-          <input type="submit" value="Poista"/>
-        </form>
-      </div>
+<script>
 
-</td>
-</tr>
-    {% endfor %}
-  </table>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
+function sortTableName() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+function sortTableType() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+function sortTableBrand() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[2];
+      y = rows[i + 1].getElementsByTagName("TD")[2];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+</script>
+
 {% endblock %}

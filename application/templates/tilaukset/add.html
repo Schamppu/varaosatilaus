@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('tilaus_add', tilaus_id=tilaus.id) }}">
+<table>
+	<div class="form-group">
+		{{ form.orderPart.label }}
+		{{ form.orderPart(class="form-control") }}
+			{% for error in form.orderPart.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<button type="submit" class="btn btn-primary">Lisää varaosa</button>
+</form>
+<br><br>
+{% if error == 1 %}
+<div>Varaosaa ei löytynyt tietokannasta.</div>
+{% endif %}
+
+{% endblock %}

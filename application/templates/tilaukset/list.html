@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table class="table table-striped">
+  <thead class=thead-dark style="background-color: #362d4d;">
+    <tr>
+        <th>#ID</th>
+        <th>Tilauksen luontiaika</th>
+        <th>Tilausta muokattu</th>
+        <th>Tilauksen vaihe</th>
+        <th>Tilauksen toimituspaikka</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  {% for tilaus in tilaukset %}
+  <tr>
+    <td>{{ tilaus.id }}</td>
+    <td>{{ tilaus.date_created }}</td>
+    <td>{{ tilaus.date_modified }}</td>
+    <td>{{ tilaus.orderStatusNames[tilaus.orderStatus] }}</td>
+    <td>{{ tilaus.orderPlaceNames[tilaus.orderPlace] }}</td>
+    <td>
+
+
+    <div class="d-flex flex-row justify-content-around">
+      <form method="POST" action="{{ url_for('tilaus_edit', tilaus_id=tilaus.id) }}">
+        <input class="btn btn-primary" type="submit" value="Muokkaa"/>
+      </form>
+
+      <form method="POST" action="{{ url_for('tilaus_delete', tilaus_id=tilaus.id) }}">
+        <input class="btn btn-primary" type="submit" value="Poista"/>
+      </form>
+
+    </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

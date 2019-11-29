@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('tilaus_create') }}">
+<table>
+	<div class="form-group">
+		{{ form.orderPlace.label }}
+		{{ form.orderPlace(class="form-control") }}
+			{% for error in form.orderPlace.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.orderStatus.label }}
+		{{ form.orderStatus(class="form-control") }}
+			{% for error in form.orderStatus.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<button type="submit" class="btn btn-primary">Lisää uusi tilaus</button>
+</form>
+
+{% endblock %}
