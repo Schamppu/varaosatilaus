@@ -1,13 +1,13 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.varaosat.models import Varaosa
 from application.varaosat.forms import VaraosaForm
 
 # Formin route
 @app.route("/varaosat/new/")
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def varaosa_form():
     return render_template("varaosat/new.html", form = VaraosaForm())
 
@@ -19,7 +19,7 @@ def varaosa_index():
 
 # Määrittelee create käskyn
 @app.route("/varaosat/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def varaosa_create():
     form = VaraosaForm(request.form)
 
@@ -47,14 +47,14 @@ def save_changes(varaosa_id, form, new=False):
 
 # Editoinnin get-käsky
 @app.route("/varaosat/edit/<varaosa_id>/", methods=["GET"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def show_varaosa(varaosa_id):
     varaosa = Varaosa.query.get(varaosa_id)
     return render_template("varaosat/edit.html", varaosa = varaosa, form = VaraosaForm(obj=varaosa))
 
 # Tämä määrittelee editointikäskyn
 @app.route("/varaosat/edit/<varaosa_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def varaosa_edit(varaosa_id):
 
     form = VaraosaForm(request.form)
@@ -70,7 +70,7 @@ def varaosa_edit(varaosa_id):
 
 # Tämä määrittelee poistokäskyn
 @app.route("/varaosat/delete/<varaosa_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def varaosa_delete(varaosa_id):
 
 

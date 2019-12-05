@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.tilaukset.models import Tilaus
 from application.tilaukset.forms import TilausForm
 from application.tilaukset.forms import TilausAddForm
@@ -15,7 +15,7 @@ def tilaus_index():
 
 # Luodaan form-sivu
 @app.route("/tilaukset/new/")
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_form():
 
     # Luodaan ensin uusi tilaus placeholder-arvoilla
@@ -29,7 +29,7 @@ def tilaus_form():
 
 # Luodaan create-sivu
 @app.route("/tilaukset/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_create():
 
     # Luodaan ensin uusi tilaus placeholder-arvoilla
@@ -44,41 +44,21 @@ def tilaus_create():
 
 # Editoinnin get-käsky
 @app.route("/tilaukset/edit/<tilaus_id>/", methods=["GET"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def show_tilaus(tilaus_id):
     tilaus = Tilaus.query.get(tilaus_id)
-    # varaosat = TilausVaraosa.query.filter(TilausVaraosa.parent_id==tilaus.id).all()
     varaosat = db.session.query(Varaosa).filter(Varaosa.id == Liitostaulu.varaosa_id).filter(tilaus.id == Liitostaulu.tilaus_id).all()
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('varaosan palauttama arvo: ',varaosat,'<--- onko tää oikein?')
 
     return render_template("tilaukset/edit.html", tilaus = tilaus, form = TilausForm(obj=tilaus), varaosat = varaosat)
 
 # Luodaan edit-sivu
 @app.route("/tilaukset/edit/<tilaus_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_edit(tilaus_id):
 
     form = TilausForm(request.form)
     tilaus = Tilaus.query.get(tilaus_id)
-    # varaosat = TilausVaraosa.query.filter(TilausVaraosa.parent_id==tilaus.id).all()
     varaosat = db.session.query(Varaosa).filter(Varaosa.id == Liitostaulu.varaosa_id).filter(tilaus.id == Liitostaulu.tilaus_id).all()
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('varaosan palauttama arvo: ',varaosat,'<--- onko tää oikein?')
 
     if not form.validate():
         return render_template("tilaukset/edit.html", tilaus = tilaus, form = TilausForm(obj=tilaus), varaosat = varaosat)
@@ -97,7 +77,7 @@ def save_changes(tilaus_id, form, new=False):
 
 # Luodaan delete-käsky
 @app.route("/tilaus/delete/<tilaus_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_delete(tilaus_id):
 
 
@@ -109,14 +89,14 @@ def tilaus_delete(tilaus_id):
 
 # Varaosan lisäyksen get-käsky
 @app.route("/tilaukset/add/<tilaus_id>/", methods=["GET"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def show_add(tilaus_id):
     tilaus = Tilaus.query.get(tilaus_id)
     return render_template("tilaukset/add.html", tilaus = tilaus, form = TilausAddForm(obj=tilaus))
 
 # Luodaan add-käsky varaosalle
 @app.route("/tilaus/add/<tilaus_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_add(tilaus_id):
 
 
@@ -132,18 +112,6 @@ def tilaus_add(tilaus_id):
     if exists == True:
 
         varaosa = db.session.query(Varaosa).filter(Varaosa.partCode == form.orderPart.data).first()
-
-        #varaosa = Varaosa.query.get(form.orderPart.data)
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('AAAAAA')
-        print('varaosan palauttama arvo: ',varaosa,'<--- onko tää oikein?')
-        #varaosa = db.session.query((Varaosa.id).where(Varaosa.partCode == form.orderPart.data))
         tilaus.varaosat.append(varaosa)
         db.session().commit()
 
@@ -154,27 +122,12 @@ def tilaus_add(tilaus_id):
 
 # Luodaan varaosan delete-käsky
 @app.route("/tilaus/add/<tilaus_id>/delete/<varaosa_id>/", methods=["POST"])
-@login_required
+@login_required(role=['admin','warehouse', 'retail'])
 def tilaus_varaosa_delete(tilaus_id,varaosa_id):
 
     tilaus = Tilaus.query.get(tilaus_id)
     varaosa = Varaosa.query.get(varaosa_id)
-    #varaosa = TilausVaraosa.query.get(varaosa_id)
-    #varaosa = db.session.query(Liitostaulu).filter(varaosa_id == Liitostaulu.varaosa_id,tilaus_id == Liitostaulu.tilaus_id)
-    #varaosa = db.session.query(Varaosa).filter(varaosa_id == Liitostaulu.varaosa_id,tilaus_id == Liitostaulu.tilaus_id)       print('AAAAAA')
-
     liitos = db.session.query(Varaosa).filter(Varaosa.id == Liitostaulu.varaosa_id).filter(tilaus.id == Liitostaulu.tilaus_id).first()
-
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('AAAAAA')
-    print('varaosa: ',varaosa.id)
-    print('tilaus: ',tilaus.id)
-    print('arvo mitä etitään: ',liitos,'<--- onko tää oikein?')
 
     tilaus.varaosat.remove(liitos)
 

@@ -47,12 +47,28 @@ user, user
 - v.0.11 HOTFIX (21.11.2019): Laajempi tietokantahaku aiheutti Herokun kanssa ongelmia vaikka toimikin paikallisesti. Otettu pois käytöstä toistaiseksi.
 - v.0.12 Pikkufix (21.11.2019): Kaikki tasks-nimiset asiat ohjelmassa muokattu varaosa-nimisiksi.
 - v.0.2 (28.11.2019): Lisätty valtavasti uusia toiminnallisuuksia. Lisätty mahdollisuus lisätä uusia tilauksia, varaosat lisätään erilliseen tauluun, liitostaulu yhdistämässä näitä kahta tietokantataulua ja mahdollisuus vaihtaa tilauksien tilaa. Myös näkymät lisätty näille. Sovellus alkaa toiminnallisuuksiltaan olla pian valmis minkä jälkeen siirryn käytettävyyden parantamiseen ja lisäämään esim. käyttäjienlisäystoiminnallisuutta.
+- v.0.3 (5.12.2019): Lisätty autorisointitoimintoja ja eri käyttäjäluokkia. Lisätty myös admin-käyttöoikeuden omaavalle käyttäjälle mahdollisuus luoda (rekisteröidä) uusia käyttäjätunnuksia järjestelmään. Lisätty kaksi monimutkaisempaa yhteenvetokyselyä aloitussivulle (index). Admin-käyttöoikeuden omaavat käyttäjät voivat myös muokata olemassaolevia käyttäjiä.
 
 ## TODO:
 - Ulkoasun parantelua
-- Eniten tilatut varaosat näkyvät tilauksessa listana (esim. top 10) ja suoraan sellaista klikkaamalla on mahdollista tilata kyseinen varaosa
-- Mahdollisuus lisätä uusia käyttäjiä admin-tunnareilla
+- Varaosat näkyvät varaosaa lisätessä tilaukselle
 
 ## DONE:
 - Lisää tietokantatauluja suunnitelmasta
 - Enemmän tietoja per varaosa
+- Mahdollisuus lisätä uusia käyttäjiä admin-tunnareilla
+
+## Asennusohje
+- HUOM. Alustava asennusohje!
+- Asennukseen tarvittaviin työvälineihin löytyy ohjeet tästä: https://materiaalit.github.io/tsoha-19/tyovalineet/
+- Avaa konsoli kansion juureen
+- Kirjoita python run.py konsoliin
+- Avaa local verkko-osoite selaimessa, esim. http://127.0.0.1:5000/
+
+## Käyttöohje
+- HUOM. Alustava käyttöohje!
+- Luo ensin admin-tunnus SQL:n ja anna sille käyttöoikeudeksi 'admin'
+- Tämän jälkeen voit luoda muita käyttäjiä joilla on alempia käyttöoikeuksia
+- Luo tarvittavat varaosat järjestelmään
+- Jaa asianmukaisille henkilöille heidän käyttäjätunnukset
+

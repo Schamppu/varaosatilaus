@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table class="table table-striped">
+  <thead class=thead-dark style="background-color: #362d4d;">
+    <tr>
+        <th>#ID</th>
+        <th>Käyttäjätunnuksen nimi</th>
+        <th>Käyttäjätunnus</th>
+        <th>Käyttäjäryhmä</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  {% for user in users %}
+  <tr>
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.role }}</td>
+    <td>
+
+
+    <div class="d-flex flex-row justify-content-around">
+      <form method="GET" action="{{ url_for('show_user', user_id=user.id) }}">
+        <input class="btn btn-primary" type="submit" value="Muokkaa"/>
+      </form>
+
+      <form method="POST" action="{{ url_for('manage_delete', user_id=user.id) }}">
+        <input class="btn btn-primary" type="submit" value="Poista"/>
+      </form>
+
+    </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+
+<div class="d-flex flex-row justify-content-around">
+		<form method="GET" action="{{ url_for('manage_form') }}">
+			<input class="btn btn-primary" type="submit" value="Lisää uusi käyttäjä"/>
+		</form>
+</div>
+
+{% endblock %}

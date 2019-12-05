@@ -32,6 +32,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('varaosa_form') }} ">Luo uusi varaosa</a>
             </li>
+
+            {% if current_user.role == 'admin' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('manage_index') }} ">Hallitse käyttäjätunnuksia</a>
+            </li>
+            {% endif %}
           </ul>
 
         </div>

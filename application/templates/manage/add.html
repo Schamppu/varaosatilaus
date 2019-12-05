@@ -1,0 +1,54 @@
+
+
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('manage_create') }}">
+<table>
+	<div class="form-group">
+		{{ form.name.label }}
+		{{ form.name(class="form-control") }}
+			{% for error in form.name.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.username.label }}
+		{{ form.username(class="form-control") }}
+			{% for error in form.username.errors %}
+			{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.password.label }}
+		{{ form.password(class="form-control") }}
+			{% for error in form.password.errors %}
+				{{ error }}
+			{% endfor %}
+	</div> 
+
+	<div class="form-group">
+		{{ form.passwordCheck.label }}
+		{{ form.passwordCheck(class="form-control") }}
+
+			{% for error in form.passwordCheck.errors %}
+				{{ error }}
+			{% endfor %}
+	</div> 
+
+
+	<div class="form-group">
+			{{ form.role.label }}
+			{{ form.role(class="form-control") }}
+				{% for error in form.role.errors %}
+				{{ error }}
+				{% endfor %}
+	</div> 
+
+	<button type="submit" class="btn btn-primary">Lisää käyttäjätunnus</button>
+</form>
+</table>
+
+{% endblock %}

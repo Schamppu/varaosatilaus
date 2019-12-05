@@ -5,4 +5,64 @@
     Tervetuloa Samin varaosatilausjärjestelmään! Tämä on kristillinen varaosatilausjärjestelmä.
   </p>
 
+  <p>
+      Uusimmat viisi tilausta:
+  </p>
+  {% if new_tilaus is defined %}
+  <table class="table table-striped">
+      <thead class=thead-dark style="background-color: #362d4d;">
+        <tr>
+            <th>#ID</th>
+            <th>Tilauksen luontipäivämäärä</th>
+            <th>Käyttäjätunnus</th>
+            <th></th>
+        </tr>
+      </thead>
+  <tbody>
+    
+
+    {% for data in new_tilaus %}
+    <tr>
+      <td>{{ data.tilaus }}</td>
+      <td>{{ data.aika }}</td>
+      <td>{{ data.tunnus }}</td>
+      <td>
+
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+  {% endif %}
+
+  <p>
+      Käyttäjät joilla eniten tilauksia:
+  </p>
+  {% if tilaus_numbers is defined %}
+  <table class="table table-striped">
+      <thead class=thead-dark style="background-color: #362d4d;">
+        <tr>
+            <th>Käyttäjän nimi</th>
+            <th>Tilausten lukumäärä</th>
+            <th></th>
+        </tr>
+      </thead>
+  <tbody>
+    
+
+    {% for data in tilaus_numbers %}
+    <tr>
+      <td>{{ data.tunnus }}</td>
+      <td>{{ data.lkm }}</td>
+      <td>
+
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+  {% endif %}
+
 {% endblock %}

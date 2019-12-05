@@ -5,7 +5,7 @@ from application.auth.models import User
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", new_tilaus=User.find_new_orders(), tilaus_numbers=User.find_users_with_most_orders())
 
 '''
 

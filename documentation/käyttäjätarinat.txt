@@ -1,3 +1,12 @@
+5.12.2019 | v.0.3
+-----
+Toteutettu nyt paljon uusia ominaisuuksia. Aiemman v.0.2 päivityksen tärkeimmät tiedot lukee README.md:n changelogissa.
+
+Nyt sovellukesssa toimii autorisointi, missä tärkeimpänä ominaisuutena se, että vain admin-oikeudet omaava tunnus voi hallinnoida muita tunnuksia ja luoda uusia tunnuksia. Tämä toimii näin sen takia, kun sovelluksen käyttötarkoituksena on, että toimipisteet (myymälät, varastot)
+eivät voi itse rekisteröidä uusia tunnuksia, vaan ainoastaan heidän esimies tai järjestelmän ylläpitäjä (admin) voi luoda uusia toimipisteitä.
+
+Tämän lisäksi etusivulle lisätty kaksi suht hyödyllistä yhteenvetokyselyä. Näitä tullaan mahdollisesti parantamaan tulevaisuudessa lisäämällä varaosiin liittyvä yhteenvetokysely, mistä käy ilmi eniten tilatut varaosat.
+
 21.11.2019 | v.0.1
 -----
 Pahoittelut kun aiemmin en ole pitänyt näitä käyttäjätarinoita, tämä on siis nyt ensimmäinen merkintä.
